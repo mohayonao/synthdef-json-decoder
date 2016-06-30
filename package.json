@@ -1,0 +1,55 @@
+{
+  "name": "synthdef-decoder",
+  "description": "Decode SuperCollider Synth Definition File Format and convert to JSON",
+  "version": "0.1.0",
+  "author": "Nao Yonamine <mohayonao@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/mohayonao/synthdef-decoder/issues"
+  },
+  "dependencies": {
+    "lodash.frompairs": "^4.0.1",
+    "nmap": "^0.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.9.0",
+    "eater": "^3.0.0-3",
+    "eslint": "^2.13.1",
+    "eslint-plugin-node": "^1.5.0",
+    "npm-run-all": "^2.2.0",
+    "nyc": "^6.6.1"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "lib"
+  ],
+  "homepage": "https://github.com/mohayonao/synthdef-decoder/",
+  "keywords": [
+    "decoder",
+    "super collider",
+    "synthdef"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohayonao/synthdef-decoder.git"
+  },
+  "scripts": {
+    "build": "npm-run-all build:*",
+    "build:to5": "babel --out-dir=lib src",
+    "clean": "rm -rf lib coverage .nyc_output npm-debug.log",
+    "cover": "nyc --reporter text --reporter html eater",
+    "lint": "eslint src test",
+    "postversion": "git push && git push --tags && npm run clean",
+    "prepublish": "npm-run-all clean lint test build",
+    "preversion": "npm-run-all clean lint test",
+    "test": "eater",
+    "travis": "npm-run-all lint test"
+  }
+}
