@@ -27,7 +27,8 @@ SynthDef("sine", { |amp = 0.5, freq = 440|
 const fs = require("fs");
 const decoder = require("synthdef-decoder");
 
-const buffer = new Uint8Array(fs.readFileSync("decay-sin.scsyndef")).buffer;
+const file = fs.readFileSync("sine.scsyndef");
+const buffer = new Uint8Array(file).buffer;
 const json = decoder.decode(buffer);
 
 console.log(json);
