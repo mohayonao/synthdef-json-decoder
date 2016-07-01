@@ -47,7 +47,7 @@ console.log(json);
     //   { key: the name of the parameter, value: its index in the parameter array }
     "paramIndices": { "amp": 0, "freq": 1 },
     // ugen-spec
-    //   [
+    //   [ [
     //     the name of the SC unit generator class,
     //     calculation rate (0: Scalar, 1: Control, 2: Audio),
     //     special index,
@@ -56,7 +56,7 @@ console.log(json);
     //           or [ -1 for a constant, index of constant ] ]
     //     output-spec
     //       [ calculation rate ]
-    //   ]
+    //   ] ]
     "specs": [
       [ "Control"     , 1, 0, [                                ], [ 1, 1 ] ],
       [ "SinOsc"      , 2, 0, [ [  0, 1 ], [ -1, 0 ]           ], [ 2    ] ],
