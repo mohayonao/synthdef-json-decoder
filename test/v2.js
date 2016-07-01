@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const assert = require("assert");
-const synthdefDecoder = require("../src");
+const decoder = require("../src");
 
 // SynthDef(\sine, { |amp = 0.5, freq = 440|
 //   Out.ar(0, SinOsc.ar(freq, 0, amp) ! 2);
@@ -13,7 +13,7 @@ fs.readFile(path.join(__dirname, "v2.scsyndef"), (err, data) => {
   assert(!err, err);
 
   const buffer = new Uint8Array(data).buffer;
-  const actual = synthdefDecoder.decode(buffer);
+  const actual = decoder.decode(buffer);
   const expected = [
     {
       name: "sine",
