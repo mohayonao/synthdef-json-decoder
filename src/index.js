@@ -1,15 +1,21 @@
 "use strict";
 
-const assert = require("assert");
 const nmap = require("nmap");
 const DataReader = require("./DataReader");
 const SynthDefDecoder2 = require("./SynthDefDecoder2");
 const SynthDefDecoder1 = require("./SynthDefDecoder1");
 
-function decodeSynthDefFile(reader) {
-  assert(reader.readInt32() === 0x53436766, "synthdef should be start with 'SCfg'");
+function readSynthDefFile(reader) {
+  if (reader.readInt32() !== 0x53436766) {
+    throw new TypeError("synthdef should be start with 'SCfg'");
+  }
 
   const version = reader.readInt32();
+
+  if (version !== 1 && version !== 2) {
+    throw new TypeError(`invalid version: ${ version }`);
+  }
+
   const numberOfSynthDefs = reader.readInt16();
   const SynthDefDecoder = version === 1 ? SynthDefDecoder1 : SynthDefDecoder2;
   const decoder = new SynthDefDecoder(reader);
@@ -18,5 +24,5 @@ function decodeSynthDefFile(reader) {
 }
 
 module.exports = {
-  decode: buffer => decodeSynthDefFile(new DataReader(buffer))
+  decode: buffer => readSynthDefFile(new DataReader(buffer))
 };
