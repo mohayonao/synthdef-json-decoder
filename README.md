@@ -3,7 +3,7 @@
 [![NPM Version](http://img.shields.io/npm/v/synthdef-decoder.svg?style=flat-square)](https://www.npmjs.org/package/synthdef-decoder)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://mohayonao.mit-license.org/)
 
-Decode [SuperCollider Synth Definition File Format](http://doc.sccode.org/Reference/Synth-Definition-File-Format.html) and convert to JSON.
+decode [SuperCollider Synth Definition File Format](http://doc.sccode.org/Reference/Synth-Definition-File-Format.html) and convert to JSON.
 
 ## Installation
 
@@ -44,8 +44,8 @@ console.log(json);
     // initial parameter values
     "paramValues": [ 0.5, 440 ],
     // param-name
-    //   { key: the name of the parameter, value: its index in the parameter array }
-    "paramIndices": { "amp": 0, "freq": 1 },
+    //   { key: the name of the parameter, value: its index and length in the parameter array }
+    "paramIndices": { "amp": { index: 0, length: 1 }, "freq": { index: 1, length: 1 } },
     // ugen-spec
     //   [ [
     //     the name of the SC unit generator class,
