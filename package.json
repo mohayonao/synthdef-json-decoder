@@ -1,6 +1,6 @@
 {
   "name": "synthdef-decoder",
-  "description": "Decode SuperCollider Synth Definition File Format and convert to JSON",
+  "description": "decode SuperCollider Synth Definition File Format and convert to JSON",
   "version": "0.2.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bugs": {
