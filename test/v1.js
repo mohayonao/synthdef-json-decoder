@@ -19,7 +19,7 @@ fs.readFile(path.join(__dirname, "v1.scsyndef"), (err, data) => {
       name: "sine",
       consts: [ 0 ],
       paramValues: [ 0.5, 440 ],
-      paramIndices: { amp: 0, freq: 1 },
+      paramIndices: { amp: { index: 0, length: 1 }, freq: { index: 1, length: 1 } },
       specs: [
         [ "Control"     , 1, 0, [                                ], [ 1, 1 ] ],
         [ "SinOsc"      , 2, 0, [ [  0, 1 ], [ -1, 0 ]           ], [ 2    ] ],

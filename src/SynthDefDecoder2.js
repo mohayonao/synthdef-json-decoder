@@ -15,7 +15,7 @@ class SynthDefDecoder2 {
     const numberOfParamValues = this.readNumberOfParamValues();
     const paramValues = nmap(numberOfParamValues, () => this.readInitialParamValue());
     const numberOfParamIndices = this.readNumberOfParamIndices();
-    const paramIndices = fromPairs(nmap(numberOfParamIndices, () => this.readParamItems()));
+    const paramIndices = toParamIndices(nmap(numberOfParamIndices, () => this.readParamItems()), numberOfParamValues);
     const numberOfUGenSpecs = this.readNumberOfUGenSpecs();
     const specs = nmap(numberOfUGenSpecs, () => this.readUGenSpec());
     const numberOfVariants = this.readNumberOfVariants();
@@ -135,6 +135,17 @@ class SynthDefDecoder2 {
   readVariantValue() {
     return this.reader.readFloat32();
   }
+}
+
+function toParamIndices(listOfParamIndices, numberOfParamValues) {
+  const paramIndices = {};
+
+  listOfParamIndices.sort((a, b) => b[1] - a[1]).reduce((lastIndex, [ name, index ]) => {
+    paramIndices[name] = { index, length: (lastIndex - index) };
+    return index;
+  }, numberOfParamValues);
+
+  return paramIndices;
 }
 
 module.exports = SynthDefDecoder2;
