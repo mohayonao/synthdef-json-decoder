@@ -17,11 +17,11 @@ class SynthDefDecoder2 {
     const numberOfParamIndices = this.readNumberOfParamIndices();
     const paramIndices = toParamIndices(nmap(numberOfParamIndices, () => this.readParamItems()), numberOfParamValues);
     const numberOfUGenSpecs = this.readNumberOfUGenSpecs();
-    const specs = nmap(numberOfUGenSpecs, () => this.readUGenSpec());
+    const units = nmap(numberOfUGenSpecs, () => this.readUGenSpec());
     const numberOfVariants = this.readNumberOfVariants();
     const variants = fromPairs(nmap(numberOfVariants, () => this.readVariantSpec(numberOfParamValues)));
 
-    return { name, consts, paramValues, paramIndices, specs, variants };
+    return { name, consts, paramValues, paramIndices, units, variants };
   }
 
   readParamItems() {
