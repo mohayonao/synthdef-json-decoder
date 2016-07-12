@@ -57,7 +57,7 @@ console.log(json);
     //     output-spec
     //       [ calculation rate ]
     //   ] ]
-    "specs": [
+    "units": [
       [ "Control"     , 1, 0, [                                ], [ 1, 1 ] ],
       [ "SinOsc"      , 2, 0, [ [  0, 1 ], [ -1, 0 ]           ], [ 2    ] ],
       [ "BinaryOpUGen", 2, 2, [ [  1, 0 ], [  0, 0 ]           ], [ 2    ] ],
