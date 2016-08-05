@@ -7,7 +7,7 @@ const SynthDefDecoder1 = require("./SynthDefDecoder1");
 
 function readSynthDefFile(reader) {
   if (reader.readInt32() !== 0x53436766) {
-    throw new TypeError("synthdef should be start with 'SCfg'");
+    throw new TypeError("synthdef should be start with 'SCgf'");
   }
 
   const version = reader.readInt32();
