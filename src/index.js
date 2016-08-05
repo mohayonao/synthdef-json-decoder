@@ -5,9 +5,11 @@ const DataReader = require("./DataReader");
 const SynthDefDecoder2 = require("./SynthDefDecoder2");
 const SynthDefDecoder1 = require("./SynthDefDecoder1");
 
-function readSynthDefFile(reader) {
+function decodeSynthDef(data) {
+  const reader = new DataReader(data);
+
   if (reader.readInt32() !== 0x53436766) {
-    throw new TypeError("synthdef should be start with 'SCfg'");
+    throw new TypeError("synthdef should be start with 'SCgf'");
   }
 
   const version = reader.readInt32();
@@ -24,5 +26,5 @@ function readSynthDefFile(reader) {
 }
 
 module.exports = {
-  decode: buffer => readSynthDefFile(new DataReader(buffer))
+  decode: (data) => decodeSynthDef(data)
 };
