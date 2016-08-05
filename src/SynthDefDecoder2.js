@@ -11,9 +11,9 @@ class SynthDefDecoder2 {
   decode() {
     const name = this.readNameOfSynthDef();
     const numberOfConstants = this.readNumberOfConstants();
-    const consts = nmap(numberOfConstants, () => this.readConstantValue());
+    const consts = nmap(numberOfConstants, () => toJSONableNumber(this.readConstantValue()));
     const numberOfParamValues = this.readNumberOfParamValues();
-    const paramValues = nmap(numberOfParamValues, () => this.readInitialParamValue());
+    const paramValues = nmap(numberOfParamValues, () => toJSONableNumber(this.readInitialParamValue()));
     const numberOfParamIndices = this.readNumberOfParamIndices();
     const paramIndices = toParamIndices(nmap(numberOfParamIndices, () => this.readParamItems()), numberOfParamValues);
     const numberOfUnits = this.readNumberOfUnits();
@@ -55,7 +55,7 @@ class SynthDefDecoder2 {
 
   readVariantSpec(numberOfParamValues) {
     const name = this.readVariantName().replace(/^.+?\./, "");
-    const values = nmap(numberOfParamValues, () => this.readVariantValue());
+    const values = nmap(numberOfParamValues, () => toJSONableNumber(this.readVariantValue()));
 
     return [ name, values ];
   }
@@ -135,6 +135,10 @@ class SynthDefDecoder2 {
   readVariantValue() {
     return this.reader.readFloat32();
   }
+}
+
+function toJSONableNumber(value) {
+  return (value === Infinity || value === -Infinity) ? "" + value : value;
 }
 
 function toParamIndices(listOfParamIndices, numberOfParamValues) {
