@@ -19,7 +19,7 @@ class SynthDefDecoder1 extends SynthDefDecoder2 {
     return this.reader.readInt16();
   }
 
-  readNumberOfUGenSpecs() {
+  readNumberOfUnits() {
     return this.reader.readInt16();
   }
 
