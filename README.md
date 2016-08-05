@@ -1,6 +1,6 @@
-# synthdef-decoder
-[![Build Status](http://img.shields.io/travis/mohayonao/synthdef-decoder.svg?style=flat-square)](https://travis-ci.org/mohayonao/synthdef-decoder)
-[![NPM Version](http://img.shields.io/npm/v/synthdef-decoder.svg?style=flat-square)](https://www.npmjs.org/package/synthdef-decoder)
+# synthdef-json-decoder
+[![Build Status](http://img.shields.io/travis/mohayonao/synthdef-json-decoder.svg?style=flat-square)](https://travis-ci.org/mohayonao/synthdef-json-decoder)
+[![NPM Version](http://img.shields.io/npm/v/synthdef-json-decoder.svg?style=flat-square)](https://www.npmjs.org/package/synthdef-json-decoder)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://mohayonao.mit-license.org/)
 
 decoder for [SuperCollider Synth Definition File Format](http://doc.sccode.org/Reference/Synth-Definition-File-Format.html)
@@ -8,7 +8,7 @@ decoder for [SuperCollider Synth Definition File Format](http://doc.sccode.org/R
 ## Installation
 
 ```
-npm install synthdef-decoder
+npm install synthdef-json-decoder
 ```
 
 ## API
@@ -25,7 +25,7 @@ SynthDef("sine", { |amp = 0.5, freq = 440|
 
 ```js
 const fs = require("fs");
-const decoder = require("synthdef-decoder");
+const decoder = require("synthdef-json-decoder");
 
 const file = fs.readFileSync("sine.scsyndef");
 const buffer = new Uint8Array(file).buffer;
