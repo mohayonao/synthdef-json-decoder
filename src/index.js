@@ -5,7 +5,7 @@ const DataReader = require("./DataReader");
 const SynthDefDecoder2 = require("./SynthDefDecoder2");
 const SynthDefDecoder1 = require("./SynthDefDecoder1");
 
-function decodeSynthDef(data) {
+function decodeSynthDef(data, opts = {}) {
   const reader = new DataReader(data);
 
   if (reader.readInt32() !== 0x53436766) {
@@ -21,10 +21,15 @@ function decodeSynthDef(data) {
   const numberOfSynthDefs = reader.readInt16();
   const SynthDefDecoder = version === 1 ? SynthDefDecoder1 : SynthDefDecoder2;
   const decoder = new SynthDefDecoder(reader);
+  const defs = nmap(numberOfSynthDefs, () => decoder.decode());
 
-  return nmap(numberOfSynthDefs, () => decoder.decode());
+  if (opts.version) {
+    return { version, defs };
+  }
+
+  return defs;
 }
 
 module.exports = {
-  decode: (data) => decodeSynthDef(data)
+  decode: (data, opts) => decodeSynthDef(data, opts)
 };

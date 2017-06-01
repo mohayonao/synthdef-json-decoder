@@ -24,7 +24,9 @@ fs.readFile(path.join(__dirname, "inf.scsyndef"), (err, data) => {
       name: "inf",
       consts: [ 0.5, 0, 60, 64, 67, "-Infinity", "Infinity" ],
       paramValues: [ "Infinity" ],
-      paramIndices: { iter: { index: 0, length: 1 } },
+      paramIndices: [
+        { name: "iter", index: 0, length: 1 },
+      ],
       units: [
         [ "Control", 1, 0, [                                            ], [ 1 ] ],
         [ "Dser"   , 3, 0, [ [  0, 0 ], [ -1, 2 ], [ -1, 3 ], [ -1, 4 ] ], [ 3 ] ],
@@ -36,7 +38,7 @@ fs.readFile(path.join(__dirname, "inf.scsyndef"), (err, data) => {
         [ "SinOsc" , 2, 0, [ [  6, 0 ], [ -1, 1 ]                       ], [ 2 ] ],
         [ "Out"    , 2, 0, [ [ -1, 1 ], [  4, 0 ], [  7, 0 ]            ], [   ] ]
       ],
-      variants: {}
+      variants: []
     }
   ];
 

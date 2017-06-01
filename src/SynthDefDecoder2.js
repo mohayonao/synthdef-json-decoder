@@ -1,7 +1,6 @@
 "use strict";
 
 const nmap = require("nmap");
-const fromPairs = require("lodash.frompairs");
 
 class SynthDefDecoder2 {
   constructor(reader) {
@@ -19,13 +18,13 @@ class SynthDefDecoder2 {
     const numberOfUnits = this.readNumberOfUnits();
     const units = nmap(numberOfUnits, () => this.readUGenSpec());
     const numberOfVariants = this.readNumberOfVariants();
-    const variants = fromPairs(nmap(numberOfVariants, () => this.readVariantSpec(numberOfParamValues)));
+    const variants = nmap(numberOfVariants, () => this.readVariantSpec(numberOfParamValues));
 
     return { name, consts, paramValues, paramIndices, units, variants };
   }
 
   readParamItems() {
-    return [ this.readParamName(), this.readParamNameIndex() ];
+    return { name: this.readParamName(), index: this.readParamNameIndex() };
   }
 
   readUGenSpec() {
@@ -57,7 +56,7 @@ class SynthDefDecoder2 {
     const name = this.readVariantName().replace(/^.+?\./, "");
     const values = nmap(numberOfParamValues, () => toJSONableNumber(this.readVariantValue()));
 
-    return [ name, values ];
+    return { name, values };
   }
 
   readNameOfSynthDef() {
@@ -142,14 +141,13 @@ function toJSONableNumber(value) {
 }
 
 function toParamIndices(listOfParamIndices, numberOfParamValues) {
-  const paramIndices = {};
+  listOfParamIndices.forEach((item, i) => {
+    const nextItem = listOfParamIndices[i + 1];
+    const nextIndex = nextItem ? nextItem.index : numberOfParamValues;
 
-  listOfParamIndices.sort((a, b) => b[1] - a[1]).reduce((lastIndex, [ name, index ]) => {
-    paramIndices[name] = { index, length: (lastIndex - index) };
-    return index;
-  }, numberOfParamValues);
-
-  return paramIndices;
+    item.length = nextIndex - item.index;
+  });
+  return listOfParamIndices;
 }
 
 module.exports = SynthDefDecoder2;
