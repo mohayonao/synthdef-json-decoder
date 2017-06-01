@@ -1,9 +1,9 @@
 # synthdef-json-decoder
-[![Build Status](http://img.shields.io/travis/mohayonao/synthdef-json-decoder.svg?style=flat-square)](https://travis-ci.org/mohayonao/synthdef-json-decoder)
-[![NPM Version](http://img.shields.io/npm/v/synthdef-json-decoder.svg?style=flat-square)](https://www.npmjs.org/package/synthdef-json-decoder)
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://mohayonao.mit-license.org/)
+[![Build Status](https://img.shields.io/travis/mohayonao/synthdef-json-decoder.svg?style=flat-square)](https://travis-ci.org/mohayonao/synthdef-json-decoder)
+[![NPM Version](https://img.shields.io/npm/v/synthdef-json-decoder.svg?style=flat-square)](https://www.npmjs.org/package/synthdef-json-decoder)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://mohayonao.mit-license.org/)
 
-decoder for [SuperCollider Synth Definition File Format](http://doc.sccode.org/Reference/Synth-Definition-File-Format.html)
+decoder for [SuperCollider Synth Definition File Format](https://doc.sccode.org/Reference/Synth-Definition-File-Format.html)
 
 ## Installation
 
@@ -43,9 +43,14 @@ console.log(json);
     "consts": [ 0 ],
     // initial parameter values
     "paramValues": [ 0.5, 440 ],
-    // param-name
-    //   { key: the name of the parameter, value: its index and length in the parameter array }
-    "paramIndices": { "amp": { index: 0, length: 1 }, "freq": { index: 1, length: 1 } },
+    // param indices
+    //   { name: the name of the parameter, 
+    //     index: its index in the paramValues, 
+    //     length: its length in the paramValues }
+    "paramIndices": [
+      { name: "amp", index: 0, length: 1 },
+      { name: "freq", index: 1, length: 1 }
+    ],
     // ugen-spec
     //   [ [
     //     the name of the SC unit generator class,
@@ -63,12 +68,13 @@ console.log(json);
       [ "BinaryOpUGen", 2, 2, [ [  1, 0 ], [  0, 0 ]           ], [ 2    ] ],
       [ "Out"         , 2, 0, [ [ -1, 0 ], [  2, 0 ], [ 2, 0 ] ], [      ] ]
     ],
-    // variant-spec
-    //   { key: the name of the variant, value: variant initial parameter values }
-    "variants": {
-      "alpha": [ 0.25,  880 ],
-      "beta" : [ 0.5 , 1760 ]
-    }
+    // variants
+    //   { key: the name of the variant,
+    //     values: variant initial parameter values }
+    "variants": [
+      { name: "beta", values: [ 0.5 , 1760 ] },
+      { name: "alpha", values: [ 0.25,  880 ] }
+    ]
   }
 ]
 ```
