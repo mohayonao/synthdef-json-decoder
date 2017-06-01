@@ -1,7 +1,7 @@
 {
   "name": "synthdef-json-decoder",
   "description": "decoder for SuperCollider Synth Definition File Format",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bugs": {
     "url": "https://github.com/mohayonao/synthdef-json-decoder/issues"
