@@ -11,12 +11,14 @@
     "nmap": "^0.9.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-preset-es2015": "^6.13.1",
-    "eater": "^3.0.0-5",
-    "eslint": "^3.2.2",
-    "npm-run-all": "^2.3.0",
-    "nyc": "^7.1.0"
+    "babel-cli": "^6.24.1",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "eater": "^3.2.0",
+    "eslint": "^3.19.0",
+    "npm-run-all": "^4.0.2",
+    "nyc": "^11.0.1"
   },
   "engines": {
     "node": ">= 4.0.0"
@@ -42,7 +44,7 @@
     "build": "npm-run-all build:*",
     "build:to5": "babel --out-dir=lib src",
     "clean": "rm -rf lib coverage .nyc_output npm-debug.log",
-    "cover": "nyc --reporter text --reporter html eater",
+    "cover": "BABEL_ENV=cover nyc --reporter text --reporter html eater",
     "lint": "eslint src test",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm-run-all clean lint test build",
