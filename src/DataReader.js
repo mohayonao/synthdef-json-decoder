@@ -1,10 +1,11 @@
 "use strict";
 
+const DataView2 = require("dataview2").DataView2;
 const nmap = require("nmap");
 
 class DataReader {
   constructor(buffer) {
-    this.view = new DataView(buffer);
+    this.view = new DataView2(buffer);
     this._index = 0;
   }
 

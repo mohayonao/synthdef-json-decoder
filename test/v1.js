@@ -9,11 +9,13 @@ const decoder = require("../src");
 //   Out.ar(0, SinOsc.ar(freq, 0, amp) ! 2);
 // })
 
-fs.readFile(path.join(__dirname, "v1.scsyndef"), (err, data) => {
+fs.readFile(path.join(__dirname, "v1.scsyndef"), (err, buffer) => {
   assert(!err, err);
 
-  const buffer = new Uint8Array(data).buffer;
-  const actual = decoder.decode(buffer);
+  const arrayBuffer = new Uint8Array(buffer).buffer;
+  const actual1 = decoder.decode(buffer);
+  const actual2 = decoder.decode(arrayBuffer);
+
   const expected = [
     {
       name: "sine",
@@ -33,5 +35,6 @@ fs.readFile(path.join(__dirname, "v1.scsyndef"), (err, data) => {
     }
   ];
 
-  assert.deepEqual(actual, expected);
+  assert.deepEqual(actual1, expected);
+  assert.deepEqual(actual1, actual2);
 });
