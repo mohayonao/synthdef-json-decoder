@@ -141,7 +141,9 @@ function toJSONableNumber(value) {
 }
 
 function toParamIndices(listOfParamIndices, numberOfParamValues) {
-  listOfParamIndices.forEach((item, i) => {
+  listOfParamIndices.slice().sort((a, b) => {
+    return a.index - b.index;
+  }).forEach((item, i, listOfParamIndices) => {
     const nextItem = listOfParamIndices[i + 1];
     const nextIndex = nextItem ? nextItem.index : numberOfParamValues;
 
